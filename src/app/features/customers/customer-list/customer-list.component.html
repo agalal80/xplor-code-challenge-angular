@@ -1,0 +1,82 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+
+    <mat-card>
+      <mat-card-content>
+        <div fxLayout="row">
+          <div fxFlex="80%"><h2>Customers</h2></div>
+          <div fxFlex="20%" fxLayoutAlign="end center">
+            <a mat-raised-button routerLink="edit/0">Add</a>
+          </div>
+          
+        </div>
+
+        <table mat-table [dataSource]="dataSource" matSort>
+
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> CustomerId </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+    
+    
+          <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef> Firstname </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef> Lastname </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element">
+              <a href="mailto:{{element.email}}">{{element.email}}</a>
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="phoneNumber">
+            <th mat-header-cell *matHeaderCellDef> Phone_Number </th>
+            <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="countryCode">
+            <th mat-header-cell *matHeaderCellDef> Country_Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.countryCode}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef> Gender </th>
+            <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef> Balance </th>
+            <td mat-cell *matCellDef="let element"> {{element.balance | currency:element.currency:'symbol' }} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Edit </th>
+            <td mat-cell *matCellDef="let element">
+              <a routerLink="edit/{{element.id}}" routerLinkActive="active">Edit</a>
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <td mat-cell *matCellDef="let element">
+              <a htref="#" (click)="deleteCustomer(element.id)">Delete</a>
+            </td>
+          </ng-container>
+           
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
